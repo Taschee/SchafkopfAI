@@ -16,7 +16,7 @@ class Suit:
         return self.value > other.value
 
     def __lt__(self, other):
-        return self.value < other.value
+        return not self > other
 
 
 BELLS = Suit(0)
