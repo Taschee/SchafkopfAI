@@ -1,46 +1,58 @@
 import random
 
 from schafkopf.schafkopf.game.game_modes import GameMode, SOLO, WENZ, PARTNER_MODE, NO_GAME
-from schafkopf.schafkopf.game.suits import ALL_SUITS, SUITS_WITHOUT_HEARTS
+from schafkopf.schafkopf.game.suits import ALL_SUITS, SUITS_WITHOUT_HEARTS, BELLS, HEARTS, LEAVES, ACORNS
 
 
 def test_solo_beats_wenz():
-    solo = GameMode(game_type=SOLO, suit=random.choice(ALL_SUITS))
+    random_solo = GameMode(game_type=SOLO, suit=random.choice(ALL_SUITS))
     wenz = GameMode(game_type=WENZ, suit=None)
-    assert solo.beats(wenz)
-    assert not wenz.beats(solo)
+    assert random_solo > wenz
+    assert wenz < random_solo
 
 
 def test_solo_beats_partner_mode():
-    solo = GameMode(game_type=SOLO, suit=random.choice(ALL_SUITS))
-    partner_game = GameMode(game_type=PARTNER_MODE, suit=random.choice(SUITS_WITHOUT_HEARTS))
-    assert solo.beats(partner_game)
-    assert not partner_game.beats(solo)
+    random_solo = GameMode(game_type=SOLO, suit=random.choice(ALL_SUITS))
+    random_partner_game = GameMode(game_type=PARTNER_MODE, suit=random.choice(SUITS_WITHOUT_HEARTS))
+    assert random_solo > random_partner_game
+    assert random_partner_game < random_solo
 
 
 def test_solo_beats_no_game():
     solo = GameMode(game_type=SOLO, suit=random.choice(ALL_SUITS))
     no_game = GameMode(game_type=NO_GAME, suit=None)
-    assert solo.beats(no_game)
-    assert not no_game.beats(solo)
+    assert solo > no_game
+    assert no_game < solo
 
 
 def test_wenz_beats_partner_mode():
     wenz = GameMode(game_type=WENZ, suit=None)
     partner_game = GameMode(game_type=PARTNER_MODE, suit=random.choice(SUITS_WITHOUT_HEARTS))
-    assert wenz.beats(partner_game)
-    assert not partner_game.beats(wenz)
+    assert wenz > partner_game
+    assert partner_game < wenz
 
 
 def test_wenz_beats_no_game():
     wenz = GameMode(game_type=WENZ, suit=None)
     no_game = GameMode(game_type=NO_GAME, suit=None)
-    assert wenz.beats(no_game)
-    assert not no_game.beats(wenz)
+    assert wenz > no_game
+    assert no_game < wenz
 
 
 def test_partner_mode_beats_no_game():
     partner_game = GameMode(game_type=PARTNER_MODE, suit=random.choice(SUITS_WITHOUT_HEARTS))
     no_game = GameMode(game_type=NO_GAME, suit=None)
-    assert partner_game.beats(no_game)
-    assert not no_game.beats(partner_game)
+    assert partner_game > no_game
+    assert no_game < partner_game
+
+
+def test_str_method():
+    assert str(GameMode(game_type=SOLO, suit=BELLS)) == "Solo, Bells"
+    assert str(GameMode(game_type=SOLO, suit=HEARTS)) == "Solo, Hearts"
+    assert str(GameMode(game_type=SOLO, suit=LEAVES)) == "Solo, Leaves"
+    assert str(GameMode(game_type=SOLO, suit=ACORNS)) == "Solo, Acorns"
+    assert str(GameMode(game_type=WENZ, suit=None)) == "Wenz"
+    assert str(GameMode(game_type=PARTNER_MODE, suit=BELLS)) == "Partner mode, Bells"
+    assert str(GameMode(game_type=PARTNER_MODE, suit=LEAVES)) == "Partner mode, Leaves"
+    assert str(GameMode(game_type=PARTNER_MODE, suit=ACORNS)) == "Partner mode, Acorns"
+    assert str(GameMode(game_type=NO_GAME, suit=None)) == "No game"

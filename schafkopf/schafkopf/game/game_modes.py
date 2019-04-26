@@ -2,15 +2,24 @@ from schafkopf.schafkopf.game.suits import ALL_SUITS, SUITS_WITHOUT_HEARTS
 
 
 class GameMode:
-    def beats(self, other_game_mode):
-        return self.mode > other_game_mode.mode
-
     def __init__(self, game_type, suit):
         if not self.is_legal(game_type, suit):
             raise InvalidGameModeException("The specified game mode with game type {} and suit {} is not legal"
                                            .format(game_type, suit))
-        self.mode = game_type
+        self.game_type = game_type
         self.suit = suit
+
+    def __gt__(self, other_game_mode):
+        return self.game_type > other_game_mode.game_type
+
+    def __lt__(self, other):
+        return self.game_type < other.game_type
+
+    def __str__(self):
+        if self.game_type in [SOLO, PARTNER_MODE]:
+            return str(self.game_type) + ", " + str(self.suit)
+        else:
+            return str(self.game_type)
 
     @staticmethod
     def is_legal(mode, suit):
