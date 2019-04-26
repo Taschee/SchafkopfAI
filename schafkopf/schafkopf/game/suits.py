@@ -1,0 +1,4 @@
+BELLS = 0
+HEARTS = 1
+LEAVES = 2
+ACORNS = 3

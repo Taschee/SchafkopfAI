@@ -1,0 +1,8 @@
+SEVEN = 0
+EIGHT = 1
+NINE = 2
+TEN = 3
+UNTER = 4
+OBER = 5
+KING = 6
+ACE = 7
