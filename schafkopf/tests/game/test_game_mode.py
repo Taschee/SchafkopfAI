@@ -1,6 +1,8 @@
 import random
 
-from schafkopf.schafkopf.game.game_modes import GameMode, SOLO, WENZ, PARTNER_MODE, NO_GAME
+import pytest
+
+from schafkopf.schafkopf.game.game_modes import GameMode, SOLO, WENZ, PARTNER_MODE, NO_GAME, InvalidGameModeException
 from schafkopf.schafkopf.game.suits import ALL_SUITS, SUITS_WITHOUT_HEARTS, BELLS, HEARTS, LEAVES, ACORNS
 
 
@@ -56,3 +58,13 @@ def test_str_method():
     assert str(GameMode(game_type=PARTNER_MODE, suit=LEAVES)) == "Partner mode, Leaves"
     assert str(GameMode(game_type=PARTNER_MODE, suit=ACORNS)) == "Partner mode, Acorns"
     assert str(GameMode(game_type=NO_GAME, suit=None)) == "No game"
+
+
+def test_illegal_suit_for_game_type_raises_exception():
+    with pytest.raises(InvalidGameModeException):
+        GameMode(game_type=PARTNER_MODE, suit=HEARTS)
+    for suit in ALL_SUITS:
+        with pytest.raises(InvalidGameModeException):
+            GameMode(game_type=WENZ, suit=suit)
+        with pytest.raises(InvalidGameModeException):
+            GameMode(game_type=NO_GAME, suit=suit)
