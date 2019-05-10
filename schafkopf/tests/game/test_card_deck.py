@@ -2,8 +2,8 @@ from typing import Set
 
 from schafkopf.src.game.card_deck import CardDeck
 from schafkopf.src.game.cards import Card
-from schafkopf.src.game.ranks import ALL_RANKS, OBER, SEVEN
-from schafkopf.src.game.suits import ALL_SUITS, HEARTS, BELLS
+from schafkopf.src.game.ranks import ALL_RANKS
+from schafkopf.src.game.suits import ALL_SUITS
 
 
 class TestCardDeck:
