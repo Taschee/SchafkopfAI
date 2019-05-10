@@ -19,7 +19,10 @@ class TestCardDeck:
         player_hands = CardDeck().shuffle_and_deal_hands()
 
         actual_cards = [card for hand in player_hands for card in hand]
-        #assert set(expected_cards) == set(actual_cards)
 
-        assert expected_cards[0] in [Card(SEVEN, BELLS)]
+        assert len(actual_cards) == len(expected_cards)
+        for card in actual_cards:
+            assert card in expected_cards
+
+
 
