@@ -1,4 +1,4 @@
-from schafkopf.schafkopf.game.suits import ACORNS, BELLS, HEARTS, LEAVES
+from schafkopf.src.game.suits import ACORNS, BELLS, HEARTS, LEAVES, NO_SUIT
 
 
 def test_order_of_suits():
@@ -17,6 +17,7 @@ def test_order_of_suits():
 
 
 def test_str_method():
+    assert str(NO_SUIT) == "No suit"
     assert str(ACORNS) == "Acorns"
     assert str(BELLS) == "Bells"
     assert str(HEARTS) == "Hearts"

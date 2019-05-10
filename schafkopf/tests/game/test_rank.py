@@ -1,4 +1,4 @@
-from schafkopf.schafkopf.game.ranks import SEVEN, EIGHT, NINE, TEN, UNTER, OBER, KING, ACE, ALL_RANKS
+from schafkopf.src.game.ranks import SEVEN, EIGHT, NINE, TEN, UNTER, OBER, KING, ACE, ALL_RANKS
 
 
 def test_str_method():

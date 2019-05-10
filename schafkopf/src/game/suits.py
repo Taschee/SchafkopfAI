@@ -4,12 +4,14 @@ class Suit:
 
     def __str__(self):
         if self.value == 0:
-            return "Bells"
+            return "No suit"
         elif self.value == 1:
-            return "Hearts"
+            return "Bells"
         elif self.value == 2:
-            return "Leaves"
+            return "Hearts"
         elif self.value == 3:
+            return "Leaves"
+        elif self.value == 4:
             return "Acorns"
 
     def __gt__(self, other):
@@ -19,9 +21,10 @@ class Suit:
         return not self > other
 
 
-BELLS = Suit(0)
-HEARTS = Suit(1)
-LEAVES = Suit(2)
-ACORNS = Suit(3)
+NO_SUIT = Suit(0)
+BELLS = Suit(1)
+HEARTS = Suit(2)
+LEAVES = Suit(3)
+ACORNS = Suit(4)
 ALL_SUITS = [BELLS, HEARTS, LEAVES, ACORNS]
 SUITS_WITHOUT_HEARTS = [BELLS, LEAVES, ACORNS]

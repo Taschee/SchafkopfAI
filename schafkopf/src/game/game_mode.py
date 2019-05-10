@@ -1,8 +1,9 @@
-from schafkopf.schafkopf.game.suits import ALL_SUITS, SUITS_WITHOUT_HEARTS
+from schafkopf.src.game.game_type import PARTNER_MODE, WENZ, SOLO, GAME_MODES, NO_GAME, GameType
+from schafkopf.src.game.suits import ALL_SUITS, SUITS_WITHOUT_HEARTS, Suit, NO_SUIT
 
 
 class GameMode:
-    def __init__(self, game_type, suit):
+    def __init__(self, game_type: GameType, suit: Suit):
         if not self.is_legal(game_type, suit):
             raise InvalidGameModeException("The specified game mode with game type {} and suit {} is not legal"
                                            .format(game_type, suit))
@@ -25,46 +26,16 @@ class GameMode:
     def is_legal(mode, suit):
         if mode not in GAME_MODES:
             return False
-        if suit not in ALL_SUITS + [None]:
+        if suit not in ALL_SUITS + [NO_SUIT]:
             return False
-        if mode == WENZ and suit is not None:
+        if mode == WENZ and suit != NO_SUIT:
             return False
-        if mode == NO_GAME and suit is not None:
+        if mode == NO_GAME and suit != NO_SUIT:
             return False
         if mode == PARTNER_MODE and suit not in SUITS_WITHOUT_HEARTS:
             return False
         else:
             return True
-
-
-class GameType:
-    def __init__(self, value):
-        self.value = value
-
-    def __str__(self):
-        if self.value == 0:
-            return "No game"
-        elif self.value == 1:
-            return "Partner mode"
-        elif self.value == 2:
-            return "Wenz"
-        elif self.value == 3:
-            return "Solo"
-
-    def __gt__(self, other):
-        assert type(other) == GameType, "Cannot compare game type with different object"
-        return self.value > other.value
-
-    def __lt__(self, other):
-        assert type(other) == GameType, "Cannot compare game type with different object"
-        return self.value < other.value
-
-
-NO_GAME = GameType(0)
-PARTNER_MODE = GameType(1)
-WENZ = GameType(2)
-SOLO = GameType(3)
-GAME_MODES = [NO_GAME, PARTNER_MODE, WENZ, SOLO]
 
 
 class InvalidGameModeException(Exception):

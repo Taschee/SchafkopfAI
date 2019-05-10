@@ -1,4 +1,4 @@
-from schafkopf.schafkopf.game.game_modes import SOLO, WENZ, PARTNER_MODE, NO_GAME
+from schafkopf.src.game.game_type import SOLO, WENZ, PARTNER_MODE, NO_GAME
 
 
 def test_order_of_game_types():
