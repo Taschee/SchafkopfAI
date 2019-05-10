@@ -1,6 +1,6 @@
 from schafkopf.src.game.game_mode import GameMode
-from schafkopf.src.game.ranks import ALL_RANKS, Rank
-from schafkopf.src.game.suits import ALL_SUITS, Suit
+from schafkopf.src.game.ranks import Rank
+from schafkopf.src.game.suits import Suit
 
 
 class Card:
@@ -8,7 +8,8 @@ class Card:
         self.rank = rank
         self.suit = suit
 
+    def points(self):
+        return self.rank.points()
+
     def beats(self, game_mode: GameMode):
         return
-
-
