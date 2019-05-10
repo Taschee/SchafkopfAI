@@ -20,6 +20,11 @@ class Rank:
         elif self.value == 7:
             return "Ace"
 
+    def __eq__(self, other):
+        if type(other) is type(self):
+            return self.__dict__ == other.__dict__
+        return False
+
     def __gt__(self, other):
         return self.value > other.value
 

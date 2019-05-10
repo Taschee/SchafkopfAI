@@ -1,4 +1,4 @@
-from schafkopf.src.game.suits import ACORNS, BELLS, HEARTS, LEAVES, NO_SUIT
+from schafkopf.src.game.suits import ACORNS, BELLS, HEARTS, LEAVES, NO_SUIT, Suit
 
 
 class TestSuit:
@@ -15,6 +15,11 @@ class TestSuit:
         assert HEARTS < LEAVES
         assert BELLS < LEAVES
         assert BELLS < HEARTS
+        assert Suit(0) == NO_SUIT
+        assert Suit(1) == BELLS
+        assert Suit(2) == HEARTS
+        assert Suit(3) == LEAVES
+        assert Suit(4) == ACORNS
 
     def test_str_method(self):
         assert str(NO_SUIT) == "No suit"

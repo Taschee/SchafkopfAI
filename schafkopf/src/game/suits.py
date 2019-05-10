@@ -14,6 +14,11 @@ class Suit:
         elif self.value == 4:
             return "Acorns"
 
+    def __eq__(self, other):
+        if type(other) is type(self):
+            return self.value == other.value
+        return False
+
     def __gt__(self, other):
         return self.value > other.value
 
