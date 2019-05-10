@@ -16,7 +16,7 @@ class Card:
         return False
 
     def __hash__(self):
-        return id(self)
+        return 10 * self.rank.value + self.suit.value
 
     def points(self):
         return self.rank.points()

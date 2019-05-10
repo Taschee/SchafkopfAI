@@ -20,9 +20,4 @@ class TestCardDeck:
 
         actual_cards = [card for hand in player_hands for card in hand]
 
-        assert len(actual_cards) == len(expected_cards)
-        for card in actual_cards:
-            assert card in expected_cards
-
-
-
+        assert set(actual_cards) == set(expected_cards)

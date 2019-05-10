@@ -19,6 +19,9 @@ class Suit:
             return self.value == other.value
         return False
 
+    def __hash__(self):
+        return self.value
+
     def __gt__(self, other):
         return self.value > other.value
 
